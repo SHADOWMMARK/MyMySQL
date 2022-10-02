@@ -9,3 +9,8 @@ SELECT sell_date,
 FROM Activities
 GROUP BY sell_date
 ORDER BY sell_date ASC    
+
+# since mysql do not have a full join, the code followed working as the full join 
+  (SELECT * FROM Employees LEFT JOIN Salaries USING(employee_id)
+   UNION 
+   SELECT * FROM Employees RIGHT JOIN Salaries USING(employee_id))
