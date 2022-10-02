@@ -14,3 +14,19 @@ ORDER BY sell_date ASC
   (SELECT * FROM Employees LEFT JOIN Salaries USING(employee_id)
    UNION 
    SELECT * FROM Employees RIGHT JOIN Salaries USING(employee_id))
+# UNION ALL is the same
+SELECT
+    product_id,
+    'store1' as store,
+    store1 as price
+FROM Products
+WHERE store1 IS NOT null
+
+UNION ALL
+
+SELECT
+    product_id,
+    'store2' as store,
+    store2 as price
+FROM Products
+WHERE store2 IS NOT null
