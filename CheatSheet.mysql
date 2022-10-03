@@ -14,6 +14,7 @@ ORDER BY sell_date ASC
   (SELECT * FROM Employees LEFT JOIN Salaries USING(employee_id)
    UNION 
    SELECT * FROM Employees RIGHT JOIN Salaries USING(employee_id))
+   
 # UNION ALL is the same
 SELECT
     product_id,
@@ -30,3 +31,12 @@ SELECT
     store2 as price
 FROM Products
 WHERE store2 IS NOT null
+
+#608. Tree Node use the when, then, else 
+SELECT id,
+    CASE 
+        WHEN p_id is NULL THEN 'Root'
+        WHEN id IN (SELECT p_id FROM Tree) THEN 'Inner'
+        ELSE 'Leaf'
+        END AS type
+FROM Tree
