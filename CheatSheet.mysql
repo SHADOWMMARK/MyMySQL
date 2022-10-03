@@ -40,3 +40,9 @@ SELECT id,
         ELSE 'Leaf'
         END AS type
 FROM Tree
+
+#176. Second Highest Salary ORDER BY salary DESC means to sort salary as descending 
+#LIMIT 1 means this only return 1 raw, offset means do not use the first row
+SELECT 
+    (SELECT distinct salary FROM Employee ORDER BY salary DESC LIMIT 1 OFFSET 1)
+AS SecondHighestSalary
