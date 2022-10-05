@@ -46,3 +46,8 @@ FROM Tree
 SELECT 
     (SELECT distinct salary FROM Employee ORDER BY salary DESC LIMIT 1 OFFSET 1)
 AS SecondHighestSalary
+
+#197. Rising Temperature
+select t1.id from weather t1 
+inner join weather t2 
+where t1.temperature >t2.temperature and datediff(t1.recorddate ,t2.recorddate)=1;
