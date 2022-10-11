@@ -76,3 +76,6 @@ select actor_id, director_id
 from ActorDirector
 group by actor_id, director_id -- this is because will be ordered by pairs
 having count(timestamp)>=3
+
+--!!very important knowledge: The GROUP BY statement is often used with aggregate functions 
+-- (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
