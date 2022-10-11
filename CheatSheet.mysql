@@ -51,3 +51,23 @@ AS SecondHighestSalary
 select t1.id from weather t1 
 inner join weather t2 
 where t1.temperature >t2.temperature and datediff(t1.recorddate ,t2.recorddate)=1;
+
+#1084. Sales Analysis III
+SELECT p.product_id,p.product_name
+FROM Product p JOIN Sales s on p.product_id = s.product_id
+GROUP BY p.product_id
+HAVING MAX(s.sale_date)<='2019-03-31' and MIN(s.sale_date)>='2019-01-01'
+-- the having used here since the WHERE cannot used with max or min or other calculating funcs
+
+-- 1587. Bank Account Summary II
+SELECT name, sum(amount ) balance
+from Users left join Transactions using (account)
+group by account
+having balance > 10000
+
+-- It is mostly syntactic sugar, but a couple differences are noteworthy:
+-- ON is the more general of the two. One can join tables ON a column, 
+-- a set of columns and even a condition. For example:
+SELECT * FROM world.City JOIN world.Country ON (City.CountryCode = Country.Code) WHERE ...
+-- USING is useful when both tables share a column of the exact same name on which they join.
+SELECT ... FROM film JOIN film_actor USING (film_id) WHERE ... 
