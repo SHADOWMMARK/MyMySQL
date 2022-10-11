@@ -64,10 +64,15 @@ SELECT name, sum(amount ) balance
 from Users left join Transactions using (account)
 group by account
 having balance > 10000
-
 -- It is mostly syntactic sugar, but a couple differences are noteworthy:
 -- ON is the more general of the two. One can join tables ON a column, 
 -- a set of columns and even a condition. For example:
 SELECT * FROM world.City JOIN world.Country ON (City.CountryCode = Country.Code) WHERE ...
 -- USING is useful when both tables share a column of the exact same name on which they join.
 SELECT ... FROM film JOIN film_actor USING (film_id) WHERE ... 
+
+-- 1050 Actors and Directors Who Cooperated At Least Three Times
+select actor_id, director_id
+from ActorDirector
+group by actor_id, director_id -- this is because will be ordered by pairs
+having count(timestamp)>=3
