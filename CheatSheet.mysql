@@ -85,3 +85,21 @@ SELECT activity_date as day, COUNT(distinct user_id) as active_users
 FROM Activity
 WHERE activity_date > '2019-06-27' and activity_date <= '2019-07-27'
 GROUP BY activity_date;
+
+-- 607. Sales Person
+-- using left join
+SELECT s.name
+FROM SalesPerson s
+WHERE s.sales_id  not in 
+(
+    SELECT o.sales_id FROM Orders o left join Company c
+    ON o.com_id = c.com_id
+    WHERE c.name = 'RED'
+)
+group by s.name;
+-- use not in instead of left join (idea is making a new table)
+ SELECT name FROM SalesPerson 
+	 WHERE sales_id NOT IN(
+		 SELECT sales_id FROM Orders WHERE com_id IN (
+				 SELECT com_id FROM Company WHERE name="RED" )
+	 );
