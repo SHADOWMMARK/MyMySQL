@@ -109,3 +109,9 @@ select customer_number from Orders
 group by customer_number
 ORDER BY count(customer_number) DESC 
 LIMIT 1;
+
+-- 511. Game Play Analysis I
+-- group by usually used with count,min,max...
+select player_id, min(event_date) as first_login
+from activity
+group by player_id;
