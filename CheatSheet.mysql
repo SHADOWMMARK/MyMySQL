@@ -112,6 +112,8 @@ LIMIT 1;
 
 -- 511. Game Play Analysis I
 -- group by usually used with count,min,max...
+-- The GROUP BY statement is often used with aggregate 
+-- functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
 select player_id, min(event_date) as first_login
 from activity
 group by player_id;
