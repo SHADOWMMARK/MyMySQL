@@ -103,3 +103,9 @@ group by s.name;
 		 SELECT sales_id FROM Orders WHERE com_id IN (
 				 SELECT com_id FROM Company WHERE name="RED" )
 	 );
+
+-- 586. Customer Placing the Largest Number of Orders
+select customer_number from Orders
+group by customer_number
+ORDER BY count(customer_number) DESC 
+LIMIT 1;
