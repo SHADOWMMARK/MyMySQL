@@ -117,3 +117,18 @@ LIMIT 1;
 select player_id, min(event_date) as first_login
 from activity
 group by player_id;
+
+-- 1934. Confirmation Rate
+(
+    SELECT 
+        user_id,
+        ROUND(COUNT(CASE WHEN action = 'confirmed' THEN 1 END) / COUNT(*), 2) AS confirmation_rate
+    FROM Confirmations
+    GROUP BY user_id
+)
+Union
+(
+    SELECT user_id, 0.00 as confirmation_rate
+    from Signups
+    where user_id not in (select user_id from Confirmations)
+)
