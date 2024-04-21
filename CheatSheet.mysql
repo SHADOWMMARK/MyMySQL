@@ -150,3 +150,13 @@ where (customer_id, order_date) in (
   from Delivery
   group by customer_id
 );
+
+-- 596. Classes More Than 5 Students
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(student)>=5
+-- notice that HAVING is behind GROUP BY but WHERE should be aheadThe HAVING clause is used to filter groups of rows from the result set based on specified conditions.
+-- It is applied after the GROUP BY clause and any aggregation functions such as COUNT(), SUM(), AVG(), etc.
+-- Conditions in the HAVING clause are applied to groups of rows defined by the GROUP BY clause.
+-- It is typically used when you need to filter groups based on aggregate functions.
