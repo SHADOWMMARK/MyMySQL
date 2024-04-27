@@ -266,4 +266,15 @@ WHERE
   )
 -- The main difference is that TRUNCATE preserves the structure of the table and only deletes the data, while DROP completely deletes the table, including data and structure. Normally, if you only need to delete the data in the table while retaining the structure of the table, you can use TRUNCATE; if you need to delete the entire table, including structure and data, you can use DROP.
 
+-- 1327. List the Products Ordered in a Period
+SELECT product_name, sum(unit) as unit
+from Products right join orders
+on Products.product_id = orders.product_id
+where order_date between '2020-02-01' and '2020-02-29'
+group by product_name
+having sum(unit) >= 100
 
+-- 1517. Find Users With Valid E-Mails
+SELECT *
+FROM Users
+WHERE regexp_like(mail, '^[A-Za-z]+[A-Za-z0-9_.-]*@leetcode[.]com$')
