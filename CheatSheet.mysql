@@ -286,3 +286,23 @@ LEFT JOIN Employees e2
 ON e1.manager_id = e2.employee_id
 WHERE e1.salary < 30000 AND e2.employee_id IS NULL AND e1.manager_id IS NOT NULL
 ORDER BY employee_id;
+
+-- 176. Second Highest Salary
+-- id is the primary key (column with unique values) for this table.
+-- Each row of this table contains information about the salary of an employee.
+-- Write a solution to find the second highest salary from the Employee table. If there is no second highest salary, return null (return None in Pandas.
+
+SELECT
+    CASE
+        WHEN COUNT(DISTINCT TOP2.salary) > 1 THEN MIN(salary)
+        ELSE NULL
+    END AS SecondHighestSalary
+
+FROM
+    (SELECT
+        DISTINCT salary
+    FROM
+        Employee
+    ORDER BY
+        salary DESC
+    LIMIT 2) AS TOP2
