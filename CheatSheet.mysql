@@ -337,3 +337,30 @@ GROUP BY
 ORDER BY
     AVG(MovieRating.rating) DESC, Movies.title
 LIMIT 1)
+
+-- 602. Friend Requests II: Who Has the Most Friends
+WITH ids (id)
+AS
+    ((
+        SELECT
+            requester_id as id
+        FROM
+            RequestAccepted
+    )
+    UNION ALL
+    (
+        SELECT
+            accepter_id as id
+        FROM
+            RequestAccepted
+    ))
+SELECT
+    id,
+    COUNT(id) AS num
+FROM
+    ids
+GROUP BY
+    id
+ORDER BY
+    Count(id) DESC
+LIMIT 1
